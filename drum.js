@@ -71,4 +71,60 @@ const drumPads=[
     display:"Cev-H2    Nice work!",
     link:"https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
     },
-  ];
+];
+  class DrumPad extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        bgcolor: true
+      };
+      this.handleClick=this.handleClick.bind(this);
+      this.handleKeyDown=this.handleKeyDown.bind(this);
+    }
+    componentDidMount() {
+      document.addEventListener("keydown",this.handleKeyDown);
+    }
+    componentWillUnmount() {
+      document.removeEventListener("keydown",this.handleKeyDown);
+    }
+    handleKeyDown(event){
+      if (event.key === this.props.keyName || event.key===this.props.keyName.toLowerCase()){
+        this.handleClick();
+      }
+    }
+    handleClick(){
+      const x=document.getElementById(this.props.keyName);
+      x.play();
+      document.getElementById("display").innerHTML = this.props.display;
+      document.getElementById("display").style.color= this.props.padColor2;
+
+      this.setState((state) => ({bgcolor: !state.bgcolor}));
+      setTimeout(function() {
+        this.setState((state) => ({bgcolor: !state.bgcolor}));}.bind(this), 200);
+    }
+    render(){
+      return (
+        <div className="drum-pad col-xs-4" id={this.props.padId} onClick={this.handleClick} style={{backgroundColor: this.state.bgcolor ? this.props.padColor1: this.props.padColor2}}>
+          {this.props.keyName}
+          <audio className="clip" id={this.props.keyName} src={this.props.link} />
+        </div>
+      );
+    }
+  };
+  class Drum extends React.Component{
+    constructor(props){
+      super(props);
+    }
+    render(){
+      const drumPadsHtml=drumPads.map(v=><DrumPad padId={v.padId} keyName={v.keyName} link={v.link} padColor1={v.padColor1} padColor2={v.padColor2} display={v.display}/>);
+      return (
+        <div id="drum-machine">
+          <div id="display">Let's Rock!
+          </div>
+          <div className="row">{drumPadsHtml}</div>
+        </div>
+      );
+    }
+  };
+//   ReactDOM.render(<Drum />, document.getElementById("root"));
+ReactDOM.render(<p>Hello</p>, document.getElementById('root'));

@@ -3,6 +3,35 @@ body {
     align-items: center;
 }
 
+
+.drum-pad {
+    border-radius: 5px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+}
+#root {
+    margin-top:150px;
+    padding:0;
+    width: 400px;
+    height: 360px;
+}
+
+#display {
+    height: 100px;
+    width: 430px;
+    border-radius: 5px;
+    border: 2px solid LightGray;
+    margin-left: -15px;
+    padding: 25px;
+    font-size:35px;
+    text-align:center;
+    font-family:fantasy;
+}
+
+
 footer {
     text-align: center;
 }
