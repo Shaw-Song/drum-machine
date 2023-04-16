@@ -1,5 +1,8 @@
 body {
     background-color:white;
+    background-image: url(./drum-music.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     align-items: center;
 }
 
@@ -28,10 +31,12 @@ body {
     padding: 25px;
     font-size:35px;
     text-align:center;
-    font-family:fantasy;
+    font-family: 'Pacifico', cursive;
+    background-color: white;
 }
 
 
 footer {
     text-align: center;
+    color: white;
 }
